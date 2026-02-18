@@ -41,7 +41,7 @@ export const site = {
     '--font-sans': "'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif",
     '--font-mono': "'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
     '--radius': '10px',
-    '--max-width': '70ch',
+    '--max-width': '100%',
   },
   themeLight: {
     '--color-bg': '#ffffff',

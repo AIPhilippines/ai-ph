@@ -21,7 +21,7 @@ export default function PostPage() {
   const hasToc = (post.headings?.length || 0) > 0
 
   return (
-    <Page>
+    <Page fluid>
       <article>
         <header className="mb-6">
           <h1>{post.title}</h1>
