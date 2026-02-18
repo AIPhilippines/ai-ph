@@ -33,6 +33,9 @@ jobs:
       - name: Set base for GitHub Pages
         run: echo "VITE_BASE=/${{ github.event.repository.name }}/" >> $GITHUB_ENV
 
+      - name: Lint
+        run: npm run lint
+
       - name: Build
         run: npm run build
 
