@@ -52,7 +52,7 @@ export default function SearchBar() {
   }
 
   return (
-    <div style={{ position: 'relative' }}>
+    <div style={{ position: 'relative', width: 280 }}>
       <input
         aria-label="Search posts"
         aria-expanded={open}
@@ -79,7 +79,7 @@ export default function SearchBar() {
           border: '1px solid var(--color-border)',
           borderRadius: 999,
           padding: '0.4rem 0.8rem',
-          width: 220,
+          width: 280,
           outline: 'none',
         }}
       />
