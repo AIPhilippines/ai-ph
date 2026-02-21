@@ -26,12 +26,7 @@ export default function SearchBar() {
   }, [])
 
   useEffect(() => {
-    if (!q) {
-      setResults([])
-      setOpen(false)
-      return
-    }
-    setOpen(true)
+    if (!q.trim()) return
     const t = setTimeout(() => runSearch(q), DEBOUNCE_MS)
     return () => clearTimeout(t)
   }, [q, runSearch])
@@ -64,7 +59,16 @@ export default function SearchBar() {
         aria-autocomplete="list"
         role="combobox"
         value={q}
-        onChange={e => setQ(e.target.value)}
+        onChange={e => {
+          const val = e.target.value
+          setQ(val)
+          if (!val.trim()) {
+            setResults([])
+            setOpen(false)
+            return
+          }
+          setOpen(true)
+        }}
         onFocus={() => q && setOpen(true)}
         onBlur={() => setTimeout(() => setOpen(false), 150)}
         onKeyDown={handleKeyDown}
