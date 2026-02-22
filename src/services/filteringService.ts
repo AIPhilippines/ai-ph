@@ -10,10 +10,10 @@ export async function searchPosts(query: string, maxResults = 8): Promise<Search
 
   return posts
     .filter(
-      (p) =>
-        p.title.toLowerCase().includes(lower) ||
-        (p.description && p.description.toLowerCase().includes(lower))
+      (post) =>
+        post.title.toLowerCase().includes(lower) ||
+        (post.description && post.description.toLowerCase().includes(lower))
     )
     .slice(0, maxResults)
-    .map((p) => ({ title: p.title, slug: p.slug }))
+    .map((post) => ({ title: post.title, slug: post.slug }))
 }

@@ -7,25 +7,25 @@ const MAX_RESULTS = 8
 
 export default function SearchBar() {
   const navigate = useNavigate()
-  const [q, setQ] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')
   const [open, setOpen] = useState(false)
   const [results, setResults] = useState<{ title: string; slug: string }[]>([])
   const [loading, setLoading] = useState(false)
   const [highlightedIndex, setHighlightedIndex] = useState(-1)
 
-  const runSearch = useCallback(async (val: string) => {
-    if (!val.trim()) {
+  const runSearch = useCallback(async (query: string) => {
+    if (!query.trim()) {
       setResults([])
       setLoading(false)
       return
     }
     setLoading(true)
     try {
-      const out = await searchPosts(val, MAX_RESULTS)
-      setResults(out)
+      const matches = await searchPosts(query, MAX_RESULTS)
+      setResults(matches)
       setHighlightedIndex(-1)
-    } catch (err) {
-      console.error('Search failed:', err)
+    } catch (error) {
+      console.error('Search failed:', error)
       setResults([])
     } finally {
       setLoading(false)
@@ -33,28 +33,44 @@ export default function SearchBar() {
   }, [])
 
   useEffect(() => {
-    if (!q.trim()) return
-    const t = setTimeout(() => runSearch(q), DEBOUNCE_MS)
-    return () => clearTimeout(t)
-  }, [q, runSearch])
+    if (!searchQuery.trim()) return
+    const debounceTimer = setTimeout(() => runSearch(searchQuery), DEBOUNCE_MS)
+    return () => clearTimeout(debounceTimer)
+  }, [searchQuery, runSearch])
+
+  const moveSelectionDown = (e: React.KeyboardEvent) => {
+    e.preventDefault()
+    setHighlightedIndex(index => (index < results.length - 1 ? index + 1 : 0))
+  }
+
+  const moveSelectionUp = (e: React.KeyboardEvent) => {
+    e.preventDefault()
+    setHighlightedIndex(index => (index > 0 ? index - 1 : results.length - 1))
+  }
+
+  const confirmSelection = (e: React.KeyboardEvent) => {
+    if (highlightedIndex >= 0 && results[highlightedIndex]) {
+      e.preventDefault()
+      navigate(`/post/${results[highlightedIndex].slug}`)
+    }
+  }
+
+  const closeDropdown = () => {
+    setOpen(false)
+    setHighlightedIndex(-1)
+  }
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (!open || results.length === 0) {
       if (e.key === 'Escape') setOpen(false)
       return
     }
-    if (e.key === 'ArrowDown') {
-      e.preventDefault()
-      setHighlightedIndex(i => (i < results.length - 1 ? i + 1 : 0))
-    } else if (e.key === 'ArrowUp') {
-      e.preventDefault()
-      setHighlightedIndex(i => (i > 0 ? i - 1 : results.length - 1))
-    } else if (e.key === 'Enter' && highlightedIndex >= 0 && results[highlightedIndex]) {
-      e.preventDefault()
-      navigate(`/post/${results[highlightedIndex].slug}`)
-    } else if (e.key === 'Escape') {
-      setOpen(false)
-      setHighlightedIndex(-1)
+
+    switch (e.key) {
+      case 'ArrowDown': return moveSelectionDown(e)
+      case 'ArrowUp':   return moveSelectionUp(e)
+      case 'Enter':     return confirmSelection(e)
+      case 'Escape':    return closeDropdown()
     }
   }
 
@@ -65,18 +81,17 @@ export default function SearchBar() {
         aria-expanded={open}
         aria-autocomplete="list"
         role="combobox"
-        value={q}
+        value={searchQuery}
         onChange={e => {
-          const val = e.target.value
-          setQ(val)
-          if (!val.trim()) {
+          setSearchQuery(e.target.value)
+          if (!e.target.value.trim()) {
             setResults([])
             setOpen(false)
             return
           }
           setOpen(true)
         }}
-        onFocus={() => q && setOpen(true)}
+        onFocus={() => searchQuery && setOpen(true)}
         onBlur={() => setTimeout(() => setOpen(false), 150)}
         onKeyDown={handleKeyDown}
         placeholder="Search posts…"
@@ -89,15 +104,15 @@ export default function SearchBar() {
               Searching…
             </div>
           ) : results.length > 0 ? (
-            results.map((r, i) => (
+            results.map((result, index) => (
               <div
-                key={r.slug}
-                className={`py-1.5 px-1.5 rounded ${i === highlightedIndex ? 'bg-[var(--color-bg-soft)]' : ''}`}
+                key={result.slug}
+                className={`py-1.5 px-1.5 rounded ${index === highlightedIndex ? 'bg-[var(--color-bg-soft)]' : ''}`}
               >
-                <Link to={`/post/${r.slug}`}>{r.title}</Link>
+                <Link to={`/post/${result.slug}`}>{result.title}</Link>
               </div>
             ))
-          ) : q.trim() ? (
+          ) : searchQuery.trim() ? (
             <div className="py-2 px-1.5 text-sm text-[color:var(--color-muted)]">
               No posts found.
             </div>
