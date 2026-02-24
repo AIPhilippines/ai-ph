@@ -5,6 +5,7 @@ description: Working with Neo4J using Python as a complete beginner.
 date: 2026-02-18
 authorId: Arvic Gingoyon
 tags: [python, graphdb, neo4j]
+category: "learn-to-build"
 coverImage: nothing.jpeg
 ---
 

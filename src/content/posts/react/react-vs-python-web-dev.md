@@ -5,6 +5,7 @@ description: A comparison of learning paths for frontend vs backend specializati
 date: 2026-02-19
 authorId: author-1
 tags: [career, react, python]
+category: "learn-to-build"
 coverImage: /images/comparison.jpg
 ---
 
