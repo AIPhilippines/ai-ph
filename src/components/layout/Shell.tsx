@@ -54,11 +54,11 @@ export default function Shell({ children }: { children: React.ReactNode }) {
         aria-label="Sidebar"
       >
         <div className="flex items-center justify-between">
-          <Link to={DEFAULT_ROOT_PATH || '/'} className="inline-flex items-center gap-2 font-bold tracking-[0.3px]" aria-label={site.siteName}>
+          <Link to={DEFAULT_ROOT_PATH || '/'} className="inline-flex items-center gap-2 font-bold tracking-[0.3px] text-app-text" aria-label={site.siteName}>
             <span className={`${effectiveCollapsed ? 'hidden' : 'inline'}`}>{site.siteName}</span>
           </Link>
           {!isMobile && (
-            <div className="h-6 w-6 px-1 py-1 border border-gray-700 rounded-md cursor-pointer hover:bg-gray-800 transition-colors shrink-0" onClick={handleCollapse}>
+            <div className="h-6 w-6 px-1 py-1 border border-app-border rounded-md cursor-pointer hover:bg-app-bg-soft transition-colors shrink-0 text-app-text" onClick={handleCollapse}>
               {collapsed ? <ChevronRightIcon /> : <ChevronLeftIcon />}
             </div>
           )}
@@ -73,7 +73,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                 key={item.to}
                 to={item.to}
                 end={isRoot}
-                className={({ isActive }) => `inline-flex items-center ${effectiveCollapsed ? 'justify-center gap-0' : 'gap-2'} text-[color:var(--color-muted)] px-2 py-1 rounded hover:bg-[var(--color-elev)] transition-colors ${isActive ? 'text-[color:var(--color-text)] bg-[var(--color-elev)]' : ''}`}
+                className={({ isActive }) => `inline-flex items-center ${effectiveCollapsed ? 'justify-center gap-0' : 'gap-2'} text-app-muted px-2 py-1 rounded hover:bg-app-elev transition-colors ${isActive ? 'text-app-text bg-app-elev' : ''}`}
               >
                 <span className="w-8 h-8 rounded-md px-1 py-1 grid place-items-center shrink-0" aria-hidden>
                   <Icon className="flex w-6 h-6 sm:w-7 sm:h-7" />

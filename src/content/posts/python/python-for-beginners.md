@@ -5,6 +5,7 @@ description: Learn why Python is the best language to start your coding journey.
 date: 2026-02-16
 authorId: author-2
 tags: [python, programming, backend]
+category: "learn-to-build"
 coverImage: /images/python-start.jpg
 ---
 

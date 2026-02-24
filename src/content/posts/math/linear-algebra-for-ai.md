@@ -5,6 +5,7 @@ description: Understand vectors, matrices, and why linear algebra is essential f
 date: 2026-02-23
 authorId: author-1
 tags: [ai, linear-algebra, mathematics, fundamentals]
+category: "learn-to-build"
 coverImage: /images/linear-algebra-ai.jpg
 ---
 

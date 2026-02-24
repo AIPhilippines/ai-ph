@@ -5,6 +5,7 @@ description: Using FastAPI and Pydantic to build high-performance backend servic
 date: 2026-02-18
 authorId: author-2
 tags: [python, fastapi, backend]
+category: "learn-to-build"
 coverImage: /images/python-api.jpg
 ---
 

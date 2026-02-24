@@ -4,7 +4,8 @@ slug: getting-started-with-react
 description: A comprehensive guide for beginners to start their journey with ReactJS.
 date: 2026-02-15
 authorId: author-1
-tags: [react, javascript, frontend]
+tags: ["React", "JavaScript", "Frontend"]
+category: "learn-to-build"
 coverImage: /images/react-start.jpg
 ---
 

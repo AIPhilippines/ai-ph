@@ -28,14 +28,14 @@ export default function PostPage() {
         <header className="mb-6">
           <button
             onClick={() => navigate('/')}
-            className="inline-flex items-center gap-2 text-[color:var(--color-muted)] hover:text-[color:var(--color-text)] mb-4 transition-colors"
+            className="inline-flex items-center gap-2 text-app-muted hover:text-app-text mb-4 transition-colors"
             aria-label="Go back"
           >
             <ArrowLeftIcon className="w-4 h-4" />
             Back
           </button>
-          <h1>{post.title}</h1>
-          <p className="text-[color:var(--color-muted)]">{new Date(post.date).toLocaleDateString()} • {post.readingTime} min read</p>
+          <h1 className="text-app-text">{post.title}</h1>
+          <p className="text-app-muted">{new Date(post.date).toLocaleDateString()} • {post.readingTime} min read</p>
           <TagList tags={post.tags} />
         </header>
         <div className={`grid gap-8 ${hasToc ? 'lg:grid-cols-[1fr_minmax(200px,280px)]' : ''}`}>

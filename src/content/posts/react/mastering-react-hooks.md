@@ -6,6 +6,7 @@ date: 2026-02-17
 authorId: author-1
 tags: [react, hooks, performance]
 coverImage: /images/react-hooks.jpg
+category: "learn-to-build"
 ---
 
 Hooks revolutionized how we manage state and side effects in React.
