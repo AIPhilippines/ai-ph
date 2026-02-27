@@ -137,7 +137,7 @@ export default function OnlinePythonCompiler({ initialCode = '# Write your Pytho
                 </div>
                 <div
                     ref={outputRef}
-                    className={`p-4 font-mono text-sm overflow-auto max-h-40 min-h-[4rem] whitespace-pre-wrap leading-relaxed transition-colors ${error ? 'text-red-500' : 'text-pink-400 dark: text-pink-400'
+                    className={`p-4 font-mono text-sm overflow-auto max-h-40 min-h-[4rem] whitespace-pre-wrap leading-relaxed transition-colors ${error ? 'text-red-500' : 'text-rose-400 dark: text-rose-400'
                         }`}
                 >
                     {output || <span className="opacity-30 italic">Console output will appear here...</span>}
