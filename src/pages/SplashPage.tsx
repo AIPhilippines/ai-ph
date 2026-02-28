@@ -28,9 +28,9 @@ export default function SplashPage() {
         navigate('/home')
     }, [navigate])
 
-    const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-        if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault()
+    const handleKeyDown = useCallback((event: React.KeyboardEvent) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault()
             handleEnter()
         }
     }, [handleEnter])
