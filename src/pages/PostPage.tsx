@@ -17,7 +17,7 @@ export default function PostPage() {
   const [post, setPost] = useState<Post | null>(null)
 
   useEffect(() => {
-    loadAllPosts().then(all => setPost(all.find(p => p.slug === slug) || null))
+    loadAllPosts().then(posts => setPost(posts.find(post => post.slug === slug) || null))
   }, [slug])
 
   // Hydration for custom components like Python Compiler
@@ -31,16 +31,16 @@ export default function PostPage() {
     // Find all compiler roots
     const compilerElements = container.querySelectorAll('.python-compiler-root')
 
-    compilerElements.forEach((el) => {
-      const base64Code = el.getAttribute('data-code') || ''
+    compilerElements.forEach((compilerElement) => {
+      const base64Code = compilerElement.getAttribute('data-code') || ''
       let decodedCode = ''
       try {
         decodedCode = decodeURIComponent(escape(atob(base64Code)))
-      } catch (e) {
-        decodedCode = base64Code // Fallback
+      } catch (_decodeError) {
+        decodedCode = base64Code
       }
 
-      const root = createRoot(el)
+      const root = createRoot(compilerElement)
       root.render(<OnlinePythonCompiler initialCode={decodedCode} />)
       roots.push(root)
     })
