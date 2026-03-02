@@ -252,19 +252,17 @@ footer.site-footer {
   border-color: var(--color-text);
 }
 
-/* Content typography */
-/* Ensure page titles and in-article H1s use the same size for consistency */
 .page article>header h1 {
   font-size: 1.75rem;
   line-height: 1.1;
-  margin: var(--space-4) 0 var(--space-2);
+  margin: var(--space-1) 0 var(--space-2);
   font-weight: 800;
 }
 
 @media (min-width: 640px) {
   .page article>header h1 {
     font-size: 2.5rem;
-    margin: var(--space-6) 0 var(--space-4);
+    margin: var(--space-1) 0 var(--space-4);
   }
 }
 

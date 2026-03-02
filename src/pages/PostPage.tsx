@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
-import { ArrowLeftIcon } from '@heroicons/react/24/outline'
+import { useParams } from 'react-router-dom'
 import { createRoot } from 'react-dom/client'
 import Page from '../components/layout/Page'
 import Prose from '../components/content/Prose'
@@ -8,12 +7,12 @@ import TableOfContents from '../components/content/TableOfContents'
 import SocialShare from '../components/content/SocialShare'
 import TagList from '../components/content/TagList'
 import OnlinePythonCompiler from '../components/content/OnlinePythonCompiler'
+import BackButton from '../components/ui/BackButton'
 import { loadAllPosts } from '../data/index'
 import type { Post } from '../data/types'
 
 export default function PostPage() {
   const { slug } = useParams()
-  const navigate = useNavigate()
   const [post, setPost] = useState<Post | null>(null)
 
   useEffect(() => {
@@ -61,14 +60,7 @@ export default function PostPage() {
     <Page fluid>
       <article>
         <header className="mb-6">
-          <button
-            onClick={() => navigate(-1)}
-            className="inline-flex items-center gap-2 text-app-muted hover:text-app-text mb-4 transition-colors"
-            aria-label="Go back"
-          >
-            <ArrowLeftIcon className="w-4 h-4" />
-            Back
-          </button>
+          <BackButton className="mb-1" />
           <h1 className="text-app-text">{post.title}</h1>
           <p className="text-app-muted">{new Date(post.date).toLocaleDateString()} • {post.readingTime} min read</p>
           <TagList tags={post.tags} />
