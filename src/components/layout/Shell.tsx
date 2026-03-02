@@ -50,7 +50,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex">
       {/* Fixed Sidebar */}
       <aside
-        className={`fixed left-0 top-0 bottom-0 z-50 border-r border-[color:var(--color-border)] bg-[var(--color-bg-soft)] p-3 sm:p-5 flex flex-col gap-4 transition-all duration-300 ${effectiveCollapsed ? 'w-[60px]' : 'w-[220px]'} overflow-y-auto overflow-x-hidden`}
+        className={`fixed left-0 top-0 bottom-0 z-50 border-r border-[color:var(--color-border)] bg-[var(--color-bg-soft)] py-3 sm:py-5 flex flex-col gap-4 transition-all duration-300 ${effectiveCollapsed ? 'w-[60px] px-1' : 'w-[220px] px-3 sm:px-5'} overflow-y-auto overflow-x-hidden`}
         aria-label="Sidebar"
       >
         <div className="flex items-center justify-between">
