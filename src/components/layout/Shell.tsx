@@ -64,7 +64,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           )}
         </div>
 
-        <nav className="flex flex-col gap-1" aria-label="Primary">
+        <nav className={`flex flex-col gap-1 ${effectiveCollapsed ? 'items-center' : ''}`} aria-label="Primary">
           {navItems.map(item => {
             const Icon = iconMap[item.icon] || HomeIcon
             const isRoot = item.to === DEFAULT_ROOT_PATH || item.to === '/'
@@ -73,7 +73,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                 key={item.to}
                 to={item.to}
                 end={isRoot}
-                className={({ isActive }) => `inline-flex items-center w-full ${effectiveCollapsed ? 'justify-center gap-0 px-0' : 'gap-2 px-2'} text-app-muted py-1 rounded hover:bg-app-elev transition-colors ${isActive ? 'text-app-text bg-app-elev' : ''}`}
+                className={({ isActive }) => `inline-flex items-center ${effectiveCollapsed ? 'justify-center gap-0 px-1' : 'w-full gap-2 px-2'} text-app-muted py-1 rounded hover:bg-app-elev transition-colors ${isActive ? 'text-app-text bg-app-elev' : ''}`}
               >
                 <span className="w-8 h-8 rounded-md px-1 py-1 grid place-items-center shrink-0" aria-hidden>
                   <Icon className="flex w-6 h-6 sm:w-7 sm:h-7" />
