@@ -50,7 +50,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
     <div className="min-h-screen flex">
       {/* Fixed Sidebar */}
       <aside
-        className={`fixed left-0 top-0 bottom-0 z-50 border-r border-[color:var(--color-border)] bg-[var(--color-bg-soft)] p-3 sm:p-5 flex flex-col gap-4 transition-all duration-300 ${effectiveCollapsed ? 'w-[60px]' : 'w-[220px]'} overflow-y-auto overflow-x-hidden`}
+        className={`fixed left-0 top-0 bottom-0 z-50 border-r border-[color:var(--color-border)] bg-[var(--color-bg-soft)] py-3 sm:py-5 flex flex-col gap-4 transition-all duration-300 ${effectiveCollapsed ? 'w-[60px] px-1' : 'w-[220px] px-3 sm:px-5'} overflow-y-auto overflow-x-hidden`}
         aria-label="Sidebar"
       >
         <div className="flex items-center justify-between">
@@ -64,7 +64,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
           )}
         </div>
 
-        <nav className="flex flex-col gap-1" aria-label="Primary">
+        <nav className={`flex flex-col gap-1 ${effectiveCollapsed ? 'items-center' : ''}`} aria-label="Primary">
           {navItems.map(item => {
             const Icon = iconMap[item.icon] || HomeIcon
             const isRoot = item.to === DEFAULT_ROOT_PATH || item.to === '/'
@@ -73,7 +73,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                 key={item.to}
                 to={item.to}
                 end={isRoot}
-                className={({ isActive }) => `inline-flex items-center ${effectiveCollapsed ? 'justify-center gap-0' : 'gap-2'} text-app-muted px-2 py-1 rounded hover:bg-app-elev transition-colors ${isActive ? 'text-app-text bg-app-elev' : ''}`}
+                className={({ isActive }) => `inline-flex items-center ${effectiveCollapsed ? 'justify-center gap-0 px-1' : 'w-full gap-2 px-2'} text-app-muted py-1 rounded hover:bg-app-elev transition-colors ${isActive ? 'text-app-text bg-app-elev' : ''}`}
               >
                 <span className="w-8 h-8 rounded-md px-1 py-1 grid place-items-center shrink-0" aria-hidden>
                   <Icon className="flex w-6 h-6 sm:w-7 sm:h-7" />
@@ -83,7 +83,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             )
           })}
         </nav>
-        <div className="mt-auto pt-4 border-t border-[color:var(--color-border)]">
+        <div className={`mt-auto pt-4 border-t border-[color:var(--color-border)] flex ${effectiveCollapsed ? 'justify-center' : ''}`}>
           <ThemeToggle />
         </div>
       </aside>
