@@ -73,7 +73,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
                 key={item.to}
                 to={item.to}
                 end={isRoot}
-                className={({ isActive }) => `inline-flex items-center ${effectiveCollapsed ? 'justify-center gap-0' : 'gap-2'} text-app-muted px-2 py-1 rounded hover:bg-app-elev transition-colors ${isActive ? 'text-app-text bg-app-elev' : ''}`}
+                className={({ isActive }) => `inline-flex items-center w-full ${effectiveCollapsed ? 'justify-center gap-0 px-0' : 'gap-2 px-2'} text-app-muted py-1 rounded hover:bg-app-elev transition-colors ${isActive ? 'text-app-text bg-app-elev' : ''}`}
               >
                 <span className="w-8 h-8 rounded-md px-1 py-1 grid place-items-center shrink-0" aria-hidden>
                   <Icon className="flex w-6 h-6 sm:w-7 sm:h-7" />
@@ -83,7 +83,7 @@ export default function Shell({ children }: { children: React.ReactNode }) {
             )
           })}
         </nav>
-        <div className="mt-auto pt-4 border-t border-[color:var(--color-border)]">
+        <div className={`mt-auto pt-4 border-t border-[color:var(--color-border)] flex ${effectiveCollapsed ? 'justify-center' : ''}`}>
           <ThemeToggle />
         </div>
       </aside>
